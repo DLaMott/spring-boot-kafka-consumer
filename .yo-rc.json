@@ -1,0 +1,11 @@
+{
+  "generator-spring-boot-rest-api": {
+    "appName": "springboot-kafka-consumer",
+    "packageName": "com.example",
+    "contextRoot": "spring-boot-kafka-consumer",
+    "generateSampleApp": true,
+    "features": [],
+    "packageFolder": "com/example",
+    "springboot-java-ms-version": "4.3.3"
+  }
+}
