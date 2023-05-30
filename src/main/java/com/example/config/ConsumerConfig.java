@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
@@ -37,24 +38,24 @@ public class ConsumerConfig {
     public String valueDeserializerDelegate;
     @Value("${spring.value.deserializer.class:org.springframework.kafka.support.serializer.ErrorHandlingDeserializer}")
     public String valueDeserializer;
-    @Value("${spring.kafka.retry.backoff.ms:50000")
-    String retryBackoffMs;
-    @Value("${spring.kafka.reconnect.backoff.max.ms:1000")
-    String reconnectMaxBackoffMs;
-    @Value("${spring.kafka.reconnect.backoff.ms:500")
-    String reconnectBackoffMs;
-    @Value("${spring.kafka.request.timeout.ms:35000")
-    String requestTimeoutMs;
-    @Value("${spring.kafka.connections.max.idle.ms:240000")
-    String connectionMaxIdleMs;
-    @Value("${spring.kafka.max.poll.records:500")
-    String maxPollRecords;
-    @Value("${spring.kafka.max.poll.interval.ms:480000")
-    String maxPollInterval;
-    @Value("${spring.kafka.max.partition.fetch.bytes:52428800")
-    String partitionFetchBytes;
-    @Value("${spring.kafka.session.timeout.ms:10000")
-    String sessionTimeoutMs;
+    @Value("${spring.kafka.retry.backoff.ms:50000}")
+    long retryBackoffMs;
+    @Value("${spring.kafka.reconnect.backoff.max.ms:1000}")
+    long reconnectMaxBackoffMs;
+    @Value("${spring.kafka.reconnect.backoff.ms:500}")
+    long reconnectBackoffMs;
+    @Value("${spring.kafka.request.timeout.ms:30000}")
+    int requestTimeoutMs;
+    @Value("${spring.kafka.connections.max.idle.ms:240000}")
+    long connectionMaxIdleMs;
+    @Value("${spring.kafka.max.poll.records:500}")
+    int maxPollRecords;
+    @Value("${spring.kafka.max.poll.interval.ms:480000}")
+    int maxPollInterval;
+    @Value("${spring.kafka.max.partition.fetch.bytes:52428800}")
+    int partitionFetchBytes;
+    @Value("${spring.kafka.session.timeout.ms:10000}")
+    int sessionTimeoutMs;
     @Value("${consumer.bootstrap.server}")
     private String bootStrapServer;
     @Value("${consumer.listener.factory.concurrency}")
@@ -73,11 +74,11 @@ public class ConsumerConfig {
     private String autoCommitConfig;
     @Value("${spring.kafka.consumer.max-poll-records}")
     private String maxPollReConfig;
-    @Value("${spring.kafka.default.api.timeout.ms:300000")
+    @Value("${spring.kafka.default.api.timeout.ms:300000}")
     private String defaultApiTimeout;
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, ConsumerMessage> consumerFactory() {
+    public ConcurrentKafkaListenerContainerFactory<String, ConsumerMessage> ConsumerFactory() {
         Map<String, Object> kafkaConsumerProps = kafkaProperties.buildConsumerProperties();
         defaultConsumerKafkaProperties = defaultConsumerKafkaProperties();
         logger.info("Building the consumer Listener Container");
@@ -148,6 +149,4 @@ public class ConsumerConfig {
 
         return properties;
     }
-
-
 }

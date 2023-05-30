@@ -14,8 +14,8 @@
    - *Recommended Installation Guide:* https://hevodata.com/learn/install-kafka-on-windows/
 
 2. **Start Kafka!**
-- .\bin\windows\zookeeper-server-start.bat \config\zookeeper.properties to start zookeeper
-- .\bin\windows\kafka-server.bat \config\service.properties to start kafka server
+- .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties to start zookeeper
+- .\bin\windows\kafka-server-start.bat .\config\server.properties to start kafka server
 
 3. **Create Topic**:
 - .\bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test-topic
