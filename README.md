@@ -7,6 +7,17 @@
 * Localstack configuration
 * Gradle implementation
 
+## Don't want the code?
+
+Use my kafka consumer generator!
+*Requires Node/ NPM to be set up*
+
+```
+> npm install -g yo
+> npm install -g generator-spring-boot-kafka-consumer
+> yo generator-spring-boot-kafka-consumer
+```
+
 ## Local Development Setup:
 ***Steps To test Consumer against a Producer***
 
